@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "377604812501",
+    "firebase_url": "https://softjob-2940e.firebaseio.com",
+    "project_id": "softjob-2940e",
+    "storage_bucket": "softjob-2940e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377604812501:android:0a023c78dd85d47b",
+        "android_client_info": {
+          "package_name": "softjob.softjob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377604812501-614kfapuo0g7u53snckg6n6qolro9jb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcZwKjrJ3qPcYuoTvw0fH10TEq3VBiJ4Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
