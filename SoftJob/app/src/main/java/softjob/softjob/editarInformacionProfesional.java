@@ -21,6 +21,7 @@ public class editarInformacionProfesional extends AppCompatActivity {
     Button Aceptar, Cancelar;
     EditText et_Grados, et_Experiencia;
     private String KeyUsuario;
+    private int A;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
