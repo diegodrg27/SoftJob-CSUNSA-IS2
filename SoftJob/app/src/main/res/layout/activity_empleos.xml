@@ -6,4 +6,40 @@
     android:layout_height="match_parent"
     tools:context="softjob.softjob.EmpleosActivity">
 
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="281dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="112dp">
+
+        <EditText
+            android:id="@+id/editTextTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Titulo del empleo"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <Spinner
+            android:id="@+id/spinnerCategorias"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/categorias"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="80dp" />
+
+        <Button
+            android:id="@+id/buttonAddTrabajo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar Trabajo"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="401dp" />
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

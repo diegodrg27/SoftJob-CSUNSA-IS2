@@ -12,4 +12,11 @@
     <string name="firebase_error_login">Error en login</string>
     <string name="error_login">Error en login</string>
     <string name="cancel_login">Login Cancelado</string>
+
+    <array name="categorias">
+        <item>Computación</item>
+        <item>Administración</item>
+        <item>Ingenierias</item>
+        <item>Tecnicos</item>
+    </array>
 </resources>

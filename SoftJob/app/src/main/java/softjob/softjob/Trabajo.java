@@ -76,7 +76,7 @@ public class Trabajo {
     protected String descripcion;
     protected String hab_duras;
 
-    public Trabajo(String id_trabajo, String id_empresa, String titulo, String descripcion, String hab_duras, String hab_blandas, String fecha_publicacion, String id_categoria) {
+    public Trabajo(String id_trabajo, String id_categoria, String titulo,String id_empresa, String descripcion, String hab_duras, String hab_blandas, String fecha_publicacion) {
         this.id_trabajo = id_trabajo;
         this.id_empresa = id_empresa;
         this.titulo = titulo;
@@ -85,6 +85,12 @@ public class Trabajo {
         this.hab_blandas = hab_blandas;
         this.fecha_publicacion = fecha_publicacion;
         this.id_categoria = id_categoria;
+    }
+
+    public Trabajo(String id_trabajo, String categoria, String titulo){
+        this.id_trabajo = id_trabajo;
+        this.id_categoria = categoria;
+        this.titulo = titulo;
     }
 
     protected String hab_blandas;
