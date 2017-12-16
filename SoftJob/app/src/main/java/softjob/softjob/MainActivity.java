@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user !=null){//trabajar sobre el datos del usuario
+        if(user !=null){//trabajar sobre el datos del usuario SIEMPRE VA A ESTAR ALMACENADO EN EL DISPOSITIVO
             String name = user.getDisplayName();
             String email = user.getEmail();
             Uri photoUrl = user.getPhotoUrl();
@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity
                     getSharedPreferences("InfoUsuario", Context.MODE_PRIVATE);
             String IdUsuario = prefs.getString("ID", "");
 
-            /*Toast toas = Toast.makeText(getApplicationContext(), IdUsuario, Toast.LENGTH_SHORT);
-            toas.show();*/
+            //Toast toas = Toast.makeText(getApplicationContext(), IdUsuario, Toast.LENGTH_SHORT);
+            //toas.show();
 
             if(IdUsuario.isEmpty()){
                 //Toast.makeText(getApplicationContext(),"no hay ID", Toast.LENGTH_SHORT).show();

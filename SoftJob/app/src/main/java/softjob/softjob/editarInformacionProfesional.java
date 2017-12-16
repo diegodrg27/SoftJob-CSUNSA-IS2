@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 public class editarInformacionProfesional extends AppCompatActivity {
     Button Aceptar, Cancelar;
     EditText et_Grados, et_Experiencia;
+    private String KeyUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class editarInformacionProfesional extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
                         //Log.d("Key: ",KeyUsuario);
+                        KeyUsuario = messageSnapshot.getKey();
 
                         InfoProfesional info = messageSnapshot.getValue(InfoProfesional.class);
 
@@ -96,7 +98,7 @@ public class editarInformacionProfesional extends AppCompatActivity {
                 DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference()
                         .child("InfoProfesional");
 
-                dbRef.child(IdUsuario).setValue(new InfoProfesional(IdUsuario,Grados,Experiencia), new DatabaseReference.CompletionListener() {
+                dbRef.child(KeyUsuario).setValue(new InfoProfesional(IdUsuario,Grados,Experiencia), new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                         if(databaseError == null) {
