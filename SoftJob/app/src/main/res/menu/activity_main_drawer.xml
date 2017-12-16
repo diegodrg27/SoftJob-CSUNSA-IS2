@@ -16,9 +16,12 @@
             android:id="@+id/nav_infoProfesional"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Información Profesional" />
-            
-        
-        
+
+        <item
+            android:id="@+id/nav_trabajos"
+            android:icon="@drawable/ic_work_black_24dp"
+            android:title="Ofertas de Empleos" />
+
     </group>
 
     <item android:title="">

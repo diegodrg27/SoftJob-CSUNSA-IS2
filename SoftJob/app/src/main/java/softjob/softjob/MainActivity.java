@@ -189,8 +189,6 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this,editarInformacionProfesional.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_postulaciones) {
-
         } else if (id == R.id.nav_empresa) {
 
         } else if (id== R.id.nav_trabajos){
