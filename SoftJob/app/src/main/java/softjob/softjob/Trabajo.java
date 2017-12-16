@@ -93,6 +93,10 @@ public class Trabajo {
         this.titulo = titulo;
     }
 
+    public Trabajo(){
+
+    }
+
     protected String hab_blandas;
     protected String fecha_publicacion;
     protected String id_categoria;

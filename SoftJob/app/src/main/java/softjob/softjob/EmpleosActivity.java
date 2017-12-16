@@ -40,6 +40,7 @@ public class EmpleosActivity extends AppCompatActivity {
     }
 
     private void addTrabajo(){
+
         String titulo = editTextTitulo.getText().toString().trim();
         String categoria = spinnerCategorias.getSelectedItem().toString();
 

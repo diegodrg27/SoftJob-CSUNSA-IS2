@@ -29,7 +29,11 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".EmpleosActivity" />
         <activity android:name=".DatosPersonales" />
-        <activity android:name=".editarInformacionProfesional"></activity>
+        <activity android:name=".editarInformacionProfesional" />
+        <activity
+            android:name=".EmpleosListActivity"
+            android:label="@string/title_activity_empleos_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

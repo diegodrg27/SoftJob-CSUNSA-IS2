@@ -16,16 +16,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    DatabaseReference databaseTrabajos;
+    ListView listViewTrabajos;
+    List<Trabajo> trabajoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +45,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        databaseTrabajos = FirebaseDatabase.getInstance().getReference("trabajos");
+
+        trabajoList = new ArrayList<>();
 
         if(user !=null){//trabajar sobre el datos del usuario SIEMPRE VA A ESTAR ALMACENADO EN EL DISPOSITIVO
             String name = user.getDisplayName();
@@ -125,6 +140,31 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        listViewTrabajos = (ListView)findViewById(R.id.listViewTrabajos);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        databaseTrabajos.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                trabajoList.clear();
+                for (DataSnapshot trabajoSnapshot: dataSnapshot.getChildren()){
+                    Trabajo trabajo = trabajoSnapshot.getValue(Trabajo.class);
+                    trabajoList.add(trabajo);
+                }
+                TrabajosList adapter = new TrabajosList(MainActivity.this, trabajoList);
+                listViewTrabajos.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void goLoginScreen() {//retorna a la actividad login

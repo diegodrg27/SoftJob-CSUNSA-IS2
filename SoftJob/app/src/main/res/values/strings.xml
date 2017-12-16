@@ -19,4 +19,5 @@
         <item>Ingenierias</item>
         <item>Tecnicos</item>
     </array>
+    <string name="title_activity_empleos_list">EmpleosListActivity</string>
 </resources>
