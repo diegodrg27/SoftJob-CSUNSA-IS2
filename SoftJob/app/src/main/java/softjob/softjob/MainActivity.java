@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user !=null){//trabajar sobre el datos del usuario
+        if(user !=null){//trabajar sobre el datos del usuario SIEMPRE VA A ESTAR ALMACENADO EN EL DISPOSITIVO
             String name = user.getDisplayName();
             String email = user.getEmail();
             Uri photoUrl = user.getPhotoUrl();
@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity
                     getSharedPreferences("InfoUsuario", Context.MODE_PRIVATE);
             String IdUsuario = prefs.getString("ID", "");
 
-            /*Toast toas = Toast.makeText(getApplicationContext(), IdUsuario, Toast.LENGTH_SHORT);
-            toas.show();*/
+            //Toast toas = Toast.makeText(getApplicationContext(), IdUsuario, Toast.LENGTH_SHORT);
+            //toas.show();
 
             if(IdUsuario.isEmpty()){
                 //Toast.makeText(getApplicationContext(),"no hay ID", Toast.LENGTH_SHORT).show();
@@ -178,22 +178,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_datosPersonales) {
             Intent intent = new Intent(MainActivity.this,DatosPersonales.class);
             startActivity(intent);
 
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_infoProfesional) {
             Intent intent = new Intent(MainActivity.this,editarInformacionProfesional.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_postulaciones) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_empresa) {
 
         } else if (id== R.id.nav_trabajos){
             Intent  intent = new Intent(MainActivity.this, EmpleosActivity.class);
