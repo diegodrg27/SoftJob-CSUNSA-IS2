@@ -27,7 +27,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".EmpleosActivity"></activity>
+        <activity android:name=".EmpleosActivity" />
+        <activity android:name=".DatosPersonales" />
+        <activity android:name=".editarInformacionProfesional"></activity>
     </application>
 
 </manifest>

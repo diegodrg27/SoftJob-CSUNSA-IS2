@@ -1,6 +1,8 @@
 package softjob.softjob;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +21,8 @@ import android.widget.Toast;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,8 +40,65 @@ public class MainActivity extends AppCompatActivity
             Uri photoUrl = user.getPhotoUrl();
             String uid = user.getUid();
 
+            /*SharedPreferences prefs =
+                    getSharedPreferences("InfoUsuario",Context.MODE_PRIVATE);
 
-            Toast.makeText(getApplicationContext(),uid, Toast.LENGTH_SHORT).show();
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.remove("ID");
+            editor.commit();
+
+            String IdUsuario = prefs.getString("ID", "");
+
+            Toast toas = Toast.makeText(getApplicationContext(), IdUsuario, Toast.LENGTH_SHORT);
+            toas.show();*/
+
+            SharedPreferences prefs =
+                    getSharedPreferences("InfoUsuario", Context.MODE_PRIVATE);
+            String IdUsuario = prefs.getString("ID", "");
+
+            /*Toast toas = Toast.makeText(getApplicationContext(), IdUsuario, Toast.LENGTH_SHORT);
+            toas.show();*/
+
+            if(IdUsuario.isEmpty()){
+                //Toast.makeText(getApplicationContext(),"no hay ID", Toast.LENGTH_SHORT).show();
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference(); //base de datos
+                DatabaseReference dataRef = reference.child("Usuarios");
+
+                DatabaseReference newPostRef = dataRef.push();
+                boolean enviarData = newPostRef.setValue(new Usuario(uid, name, "", "", "", "", "", "", email)).isSuccessful();
+                String KeyUsuario = newPostRef.getKey();
+                if (enviarData) {
+
+                    Toast toast1 = Toast.makeText(getApplicationContext(), "Surgio un Error", Toast.LENGTH_SHORT);// muestra un mensaje simple que aparece en un corto periodo de tiempo
+                    toast1.show();
+
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(), "Se crearan sus datos Personales", Toast.LENGTH_SHORT);// muestra un mensaje simple que aparece en un corto periodo de tiempo
+                    toast1.show();
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("ID", KeyUsuario);
+                    editor.commit();
+                }
+
+
+                DatabaseReference dataProfRef = reference.child("InfoProfesional");
+                DatabaseReference PostInfoProfesional  = dataProfRef.push();
+
+                boolean enviarDataInfo = PostInfoProfesional.setValue(new InfoProfesional(KeyUsuario,"","")).isSuccessful();
+                if (enviarDataInfo) {
+
+                    Toast toast1 = Toast.makeText(getApplicationContext(), "Surgio un Error", Toast.LENGTH_SHORT);// muestra un mensaje simple que aparece en un corto periodo de tiempo
+                    toast1.show();
+
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(), "Se crearan sus datos Profesionales", Toast.LENGTH_SHORT);// muestra un mensaje simple que aparece en un corto periodo de tiempo
+                    toast1.show();
+                }
+            }
+
+
+            //Toast.makeText(getApplicationContext(),uid, Toast.LENGTH_SHORT).show();
 
 
         }else{
@@ -120,8 +181,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+            Intent intent = new Intent(MainActivity.this,DatosPersonales.class);
+            startActivity(intent);
+
 
         } else if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(MainActivity.this,editarInformacionProfesional.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 

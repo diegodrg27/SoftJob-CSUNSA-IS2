@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SoftJob.iml" filepath="$PROJECT_DIR$/SoftJob.iml" />
+      <module fileurl="file://D:\GrupoIS2\SoftJob-CSUNSA-IS2\SoftJob\SoftJob.iml" filepath="D:\GrupoIS2\SoftJob-CSUNSA-IS2\SoftJob\SoftJob.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\GrupoIS2\SoftJob-CSUNSA-IS2\SoftJob\app\app.iml" filepath="D:\GrupoIS2\SoftJob-CSUNSA-IS2\SoftJob\app\app.iml" />
     </modules>
   </component>
 </project>

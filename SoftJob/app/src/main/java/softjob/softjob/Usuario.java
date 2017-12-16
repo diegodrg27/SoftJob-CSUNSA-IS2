@@ -5,17 +5,30 @@ package softjob.softjob;
  */
 
 public class Usuario {
-    int sexo;
+    String id_api;
     String Nombres;
     String Apellidos;
-    String Edad;
     String DNI;
+    String Sexo;
+    String Telefono;
+    String Celular;
+    String Direccion;
+    String Correo;
 
-    public  Usuario( String Nombres, String Apellidos ,String DNI, String Edad, int sexo){
+    public  Usuario(){
+
+    }
+
+    public  Usuario(String id_api, String Nombres, String Apellidos, String DNI, String Sexo, String Telefono, String Celular, String Direccion, String Correo){
+        this.id_api = id_api;
         this.Nombres = Nombres;
         this.Apellidos = Apellidos;
-        this.sexo = sexo;
-        this.Edad = Edad;
         this.DNI = DNI;
+        this.Sexo = Sexo;
+        this.Telefono = Telefono;
+        this.Celular = Celular;
+        this.Direccion = Direccion;
+        this.Correo = Correo;
     }
+
 }
