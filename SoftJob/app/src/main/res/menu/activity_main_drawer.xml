@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_datosPersonales"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Datos Personales" />
+        <item
+            android:id="@+id/nav_infoProfesional"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Información Profesional" />
+        <item
+            android:id="@+id/nav_postulaciones"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tus Postulaciones" />
+        <item
+            android:id="@+id/nav_empresa"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Empresa" />
+    </group>
+
+    <!--item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_empresa"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Empresa" />
+        </menu>
+    </item-->
+
+</menu>
