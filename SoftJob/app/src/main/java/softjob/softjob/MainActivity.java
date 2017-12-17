@@ -1,5 +1,6 @@
 package softjob.softjob;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,8 +18,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
@@ -35,10 +35,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    DatabaseReference databaseTrabajos;
-    ListView listViewTrabajos;
-    List<Trabajo> trabajoList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +50,22 @@ public class MainActivity extends AppCompatActivity
             String email = user.getEmail();
             Uri photoUrl = user.getPhotoUrl();
             String uid = user.getUid();
+
+            if(popup == null){
+                popup = getLayoutInflater().inflate(R.layout.nav_header_main,null);
+            }
+
+            TextView nameUsuario;
+            ImageView iconoUsuario;
+
+            nameUsuario = (TextView)popup.findViewById(R.id.tv_nameUsuario);
+            nameUsuario.setText(name);
+
+            iconoUsuario = (ImageView)findViewById(R.id.imageView);
+
+            Toast toas = Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT);
+            toas.show();
+            //iconoUsuario.setImageURI(photoUrl);
 
             /*SharedPreferences prefs =
                     getSharedPreferences("InfoUsuario",Context.MODE_PRIVATE);
@@ -218,8 +230,12 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+
+
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            //fragmentManager.beginTransaction().replace(R.id.contenedor,R.id.contenedor).commit();
+
         } else if (id == R.id.nav_datosPersonales) {
             Intent intent = new Intent(MainActivity.this,DatosPersonales.class);
             startActivity(intent);
@@ -229,7 +245,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this,editarInformacionProfesional.class);
             startActivity(intent);
 
+        } else if (id == R.id.nav_postulaciones) {
+
         } else if (id == R.id.nav_empresa) {
+            fragmentManager.beginTransaction().replace(R.id.contenedor,new menuEmpresa()).commit();
 
         } else if (id== R.id.nav_trabajos){
             Intent  intent = new Intent(MainActivity.this, EmpleosActivity.class);
