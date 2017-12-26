@@ -21,24 +21,24 @@
         android:layout_alignParentStart="true">
 
         <Button
-            android:text="Cancelar"
+            android:id="@+id/btcancelar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cancelar"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:background="@android:color/holo_red_light"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:layout_marginRight="20dp" />
+            android:text="Cancelar"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         <Button
-            android:text="Registrar"
+            android:id="@+id/btenviar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/enviar"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:layout_marginLeft="20dp" />
+            android:text="Registrar"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
     </LinearLayout>
 
     <LinearLayout
