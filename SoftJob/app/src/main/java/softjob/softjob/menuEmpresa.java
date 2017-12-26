@@ -3,6 +3,7 @@ package softjob.softjob;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class menuEmpresa extends Fragment implements  View.OnClickListener  {
@@ -39,10 +43,33 @@ public class menuEmpresa extends Fragment implements  View.OnClickListener  {
         btRegistrar.setOnClickListener(this);
         gridView=(GridView)v.findViewById(R.id.gvEmpresa);
         databaseReference=database.getReference().child("Empresa");
-        adapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,Empresas);
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        ChildEventListener child=new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String empresaid=dataSnapshot.getKey().toString();
+                String Correo=dataSnapshot.getValue().toString();
+                String Descripcion=dataSnapshot.getValue().toString();
+                String Dirección=dataSnapshot.getValue().toString();
+                String Empleos=dataSnapshot.getValue().toString();
+                String Nombre=dataSnapshot.getValue().toString();
+                texto.setText(Correo);
+                Log.d("DatosEmpresa",dataSnapshot.toString());
+                Toast toas = Toast.makeText(getApplicationContext(), "Lee data", Toast.LENGTH_SHORT);
+                toas.show();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
@@ -50,7 +77,10 @@ public class menuEmpresa extends Fragment implements  View.OnClickListener  {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        };
+        databaseReference.addChildEventListener(child);
+        //adapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,Empresas);
+
         /*databaseReference.child("Empresa 1").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
