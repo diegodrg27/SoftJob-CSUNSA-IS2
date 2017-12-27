@@ -19,7 +19,8 @@
                 android:id="@+id/spDesastre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/spinner_selector" />
+                android:background="@drawable/spinner_selector"
+                android:entries="@array/categorias" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,10 +35,11 @@
 
             <GridView
                 android:id="@+id/gvHome"
+                android:numColumns="auto_fit"
+                android:gravity="center"
+                android:columnWidth="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-
             </GridView>
 
         </LinearLayout>

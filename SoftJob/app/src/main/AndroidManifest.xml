@@ -30,8 +30,12 @@
         <activity android:name=".EmpleosActivity" />
         <activity android:name=".DatosPersonales" />
         <activity android:name=".editarInformacionProfesional" />
-        <activity android:name=".RegistrarEmpresa"></activity>
-        <activity android:name=".EmpleosListActivity"></activity>
+        <activity android:name=".RegistrarEmpresa" />
+        <activity android:name=".EmpleosListActivity" />
+        <activity
+            android:name=".MostrarEmpresaActivity"
+            android:label="@string/title_activity_mostrar_empresa"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

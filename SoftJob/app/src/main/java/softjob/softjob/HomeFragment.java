@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment {
     String cont_desastre;//recibes lo que eliges en el spinner
     GridView gridView;
     ArrayList<String> resultados=new ArrayList<>();
+    String []values= {"Ankit","Bohra","Xyz"};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment {
 
         spDesastre=(Spinner)v.findViewById(R.id.spDesastre);
         /*****************************Configurar Spinner************************************/
-        String[] desastres = new String[]{//contendor del tipo de desastre
+       String[] desastres = new String[]{//contendor del tipo de categoria
                 "Seleccione Categoría",
                 "Mantenimiento y Reparaciones Técnica",
                 "Ingenierias",
@@ -53,7 +54,7 @@ public class HomeFragment extends Fragment {
                 "Administración",
                 "Ciencia de la Computación",
         };
-        final List<String> desastresList = new ArrayList<>(Arrays.asList(desastres));//crear un List a partir de una array de strings
+        List<String> desastresList = new ArrayList<>(Arrays.asList(desastres));//crear un List a partir de una array de strings
 
         final ArrayAdapter<String> adapterDesastre = new ArrayAdapter<String>(getContext(),R.layout.spinner_item,desastresList){
             //Array adapter en el cual recibe principalmente la fuente en la cual estaran los strings y el List de los desastres
@@ -97,6 +98,8 @@ public class HomeFragment extends Fragment {
                     cont_desastre = spDesastre.getSelectedItem().toString();//obtiene el item en string
                     findEmpleo(cont_desastre);
                     gridView.setAdapter(arrayAdapter);
+                    GridAdapter gridAdapter=new GridAdapter(getContext(),resultados);
+                    gridView.setAdapter(gridAdapter);
                     //resultados.clear();
                 }
 
@@ -118,10 +121,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 resultados.clear();
-                String cosa=dataSnapshot.getValue().toString() ;
+                //String cosa=dataSnapshot.getValue().toString();
+                String cosa=dataSnapshot.getKey();
                 resultados.add(cosa);
                 //Log.d("DatosEmpresa",dataSnapshot.toString());
-                Toast toas = Toast.makeText(getApplicationContext(), cosa, Toast.LENGTH_SHORT);
+                Toast toas = Toast.makeText(getApplicationContext(), dataSnapshot.getKey(), Toast.LENGTH_SHORT);
                 toas.show();
             }
 

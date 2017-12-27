@@ -45,7 +45,7 @@ public class menuEmpresa extends Fragment implements  View.OnClickListener  {
         View v= inflater.inflate(R.layout.fragment_menu_empresa, container, false);
         database= FirebaseDatabase.getInstance();
         btRegistrar =(Button)v.findViewById(R.id.btRegistrarEmpresa);
-        texto=(TextView)v.findViewById(R.id.txtEmpresa);
+        //texto=(TextView)v.findViewById(R.id.txtEmpresa);
         btRegistrar.setOnClickListener(this);
 
         databaseEmpresas = FirebaseDatabase.getInstance().getReference("empresas");
@@ -88,7 +88,7 @@ public class menuEmpresa extends Fragment implements  View.OnClickListener  {
 
             }
         };
-        databaseReference.addChildEventListener(child);
+        //databaseReference.addChildEventListener(child);
         //adapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,Empresas);
 
         /*databaseReference.child("Empresa 1").addValueEventListener(new ValueEventListener() {
@@ -139,10 +139,11 @@ public class menuEmpresa extends Fragment implements  View.OnClickListener  {
                 listViewEmpresas.setAdapter(adapter);
             }
 
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        })
+        });
     }
 }

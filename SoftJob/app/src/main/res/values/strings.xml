@@ -22,4 +22,5 @@
         <item>Educación</item>
         <item>Ingenierias</item>
     </array>
+    <string name="title_activity_mostrar_empresa">MostrarEmpresaActivity</string>
 </resources>
