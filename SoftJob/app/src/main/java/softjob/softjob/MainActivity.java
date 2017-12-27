@@ -202,6 +202,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             //fragmentManager.beginTransaction().replace(R.id.contenedor,R.id.contenedor).commit();
+            fragmentManager.beginTransaction().replace(R.id.contenedor,new HomeFragment()).commit();
 
         } else if (id == R.id.nav_datosPersonales) {
             Intent intent = new Intent(MainActivity.this,DatosPersonales.class);
