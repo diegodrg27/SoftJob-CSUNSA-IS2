@@ -135,7 +135,7 @@ public class menuEmpresa extends Fragment implements  View.OnClickListener  {
                     empresaList.add(empresa);
                 }
 
-                softjob.softjob.EmpresaList adapter = new Empresa(RegistrarEmpresa.this, empresaList);
+                //softjob.softjob.EmpresaList adapter = new Empresa(RegistrarEmpresa.this, empresaList);
                 listViewEmpresas.setAdapter(adapter);
             }
 
