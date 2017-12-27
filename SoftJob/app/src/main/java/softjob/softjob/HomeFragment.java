@@ -3,6 +3,7 @@ package softjob.softjob;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class HomeFragment extends Fragment {
@@ -30,10 +41,11 @@ public class HomeFragment extends Fragment {
         String[] desastres = new String[]{//contendor del tipo de desastre
                 "Seleccione Categoría",
                 "Mantenimiento y Reparaciones Técnica",
-                "Ingenierías",
+                "Ingenierias",
                 "Producción y Operarios",
                 "Construcción y Obra",
                 "Recursos Humanos",
+                "Administración",
         };
         final List<String> desastresList = new ArrayList<>(Arrays.asList(desastres));//crear un List a partir de una array de strings
 
@@ -77,6 +89,8 @@ public class HomeFragment extends Fragment {
 
                 if(position > 0){
                     cont_desastre = spDesastre.getSelectedItem().toString();//obtiene el item en string
+                    findEmpleo(cont_desastre);
+
                 }
 
             }
@@ -87,5 +101,40 @@ public class HomeFragment extends Fragment {
             }
         });
     return  v;
+    }
+    void findEmpleo(String keyCategoria)
+    {
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference=database.getReference().child("trabajos");
+        Query consulta=databaseReference.orderByChild("id_categoria").equalTo(keyCategoria);
+        consulta.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String cosa=dataSnapshot.getValue().toString();
+                Log.d("DatosEmpresa",dataSnapshot.toString());
+                Toast toas = Toast.makeText(getApplicationContext(), cosa, Toast.LENGTH_SHORT);
+                toas.show();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
