@@ -3,12 +3,12 @@ package softjob.softjob;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,12 +30,17 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class HomeFragment extends Fragment {
     Spinner spDesastre;
     String cont_desastre;//recibes lo que eliges en el spinner
-
+    GridView gridView;
+    ArrayList<String> resultados=new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_home, container, false);
+        gridView=(GridView)v.findViewById(R.id.gvHome);
+        final ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,resultados);
+
+
         spDesastre=(Spinner)v.findViewById(R.id.spDesastre);
         /*****************************Configurar Spinner************************************/
         String[] desastres = new String[]{//contendor del tipo de desastre
@@ -46,6 +51,7 @@ public class HomeFragment extends Fragment {
                 "Construcción y Obra",
                 "Recursos Humanos",
                 "Administración",
+                "Ciencia de la Computación",
         };
         final List<String> desastresList = new ArrayList<>(Arrays.asList(desastres));//crear un List a partir de una array de strings
 
@@ -90,7 +96,8 @@ public class HomeFragment extends Fragment {
                 if(position > 0){
                     cont_desastre = spDesastre.getSelectedItem().toString();//obtiene el item en string
                     findEmpleo(cont_desastre);
-
+                    gridView.setAdapter(arrayAdapter);
+                    //resultados.clear();
                 }
 
             }
@@ -105,13 +112,15 @@ public class HomeFragment extends Fragment {
     void findEmpleo(String keyCategoria)
     {
         FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference=database.getReference().child("trabajos");
+        DatabaseReference databaseReference=database.getReference().child("empleos");
         Query consulta=databaseReference.orderByChild("id_categoria").equalTo(keyCategoria);
         consulta.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String cosa=dataSnapshot.getValue().toString();
-                Log.d("DatosEmpresa",dataSnapshot.toString());
+                resultados.clear();
+                String cosa=dataSnapshot.getValue().toString() ;
+                resultados.add(cosa);
+                //Log.d("DatosEmpresa",dataSnapshot.toString());
                 Toast toas = Toast.makeText(getApplicationContext(), cosa, Toast.LENGTH_SHORT);
                 toas.show();
             }
