@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +19,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -30,9 +33,12 @@ public class menuEmpresa extends Fragment implements  View.OnClickListener  {
     Button btRegistrar;
     TextView texto;
     FirebaseDatabase database;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseEmpresas;
     ArrayList<String> Empresas;
     ArrayAdapter<String> adapter;
+    ListView listViewEmpresas;
+    List<Empresa> empresaList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,8 +47,12 @@ public class menuEmpresa extends Fragment implements  View.OnClickListener  {
         btRegistrar =(Button)v.findViewById(R.id.btRegistrarEmpresa);
         texto=(TextView)v.findViewById(R.id.txtEmpresa);
         btRegistrar.setOnClickListener(this);
-        gridView=(GridView)v.findViewById(R.id.gvEmpresa);
-        databaseReference=database.getReference().child("Empresa");
+
+        databaseEmpresas = FirebaseDatabase.getInstance().getReference("empresas");
+        listViewEmpresas = (ListView)v.findViewById(R.id.listViewEmpresas);
+        empresaList = new ArrayList<>();
+
+
         ChildEventListener child=new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -109,5 +119,30 @@ public class menuEmpresa extends Fragment implements  View.OnClickListener  {
                 break;
 
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        databaseEmpresas.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                empresaList.clear();
+
+                for (DataSnapshot empresasSnapshot: dataSnapshot.getChildren()){
+                    Empresa empresa =  empresasSnapshot.getValue(Empresa.class);
+
+                    empresaList.add(empresa);
+                }
+
+                softjob.softjob.EmpresaList adapter = new Empresa(RegistrarEmpresa.this, empresaList);
+                listViewEmpresas.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        })
     }
 }

@@ -24,18 +24,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtEmpresa"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="Empresa"
-                android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+                android:layout_height="match_parent">
 
-            <GridView
-                android:id="@+id/gvEmpresa"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+                <ListView
+                    android:id="@+id/listViewEmpresas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </ScrollView>
         </LinearLayout>
 
     </LinearLayout>

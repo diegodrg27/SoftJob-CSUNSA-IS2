@@ -11,107 +11,140 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="softjob.softjob.RegistrarEmpresa">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="427dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btcancelar"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:background="@android:color/holo_red_light"
-            android:text="Cancelar"
-            android:textColor="@color/common_google_signin_btn_text_dark_default" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btenviar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:text="Registrar"
-            android:textColor="@color/common_google_signin_btn_text_dark_default" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="45dp"
+                android:layout_marginStart="45dp"
+                android:text="Registrar empresa"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+            <EditText
+                android:id="@+id/et_Nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:ems="10"
+                android:foregroundTint="@color/colorPrimary"
+                android:hint="Nombres*"
+                android:inputType="textPersonName"
+                android:maxLength="30"
+                android:textColorLink="@color/colorPrimary" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/et_Nombre"
-            android:hint="Nombres*"
-            android:layout_marginBottom="20dp"
-            android:maxLength="30"
-            android:textColorLink="@color/colorPrimary"
-            android:backgroundTint="@color/colorPrimary"
-            android:foregroundTint="@color/colorPrimary" />
+            <EditText
+                android:id="@+id/et_RUC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:ems="10"
+                android:hint="RUC*"
+                android:inputType="number"
+                android:maxLength="12"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/et_DNI"
-            android:hint="RUC*"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:maxLength="8"
-            android:backgroundTint="@color/colorPrimary" />
+            <EditText
+                android:id="@+id/et_Direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Dirección"
+                android:inputType="textPersonName" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/et_Direccion"
-            android:hint="Dirección" />
+            <EditText
+                android:id="@+id/et_Telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Teléfono"
+                android:inputType="number" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/et_Telefono"
-            android:hint="Teléfono" />
+            <EditText
+                android:id="@+id/et_Categoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:ems="10"
+                android:hint="Categoría"
+                android:inputType="text"
+                android:maxLength="2"
+                android:numeric="integer"
+                android:paddingTop="20dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:ems="10"
-            android:id="@+id/et_Categoria"
-            android:hint="Categoría"
-            android:paddingTop="20dp"
-            android:numeric="integer"
-            android:maxLength="2"
-            android:backgroundTint="@color/colorPrimary" />
+            <EditText
+                android:id="@+id/et_Descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Descripcion"
+                android:inputType="textMultiLine" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/et_Descripcion"
-            android:hint="Descripcion" />
+            <EditText
+                android:id="@+id/et_Correo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Correo"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/et_Website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Sitio web"
+                android:inputType="textPersonName" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btcancelar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_red_light"
+                    android:text="Cancelar"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+                <Button
+                    android:id="@+id/btenviar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="Registrar"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default" />
+            </LinearLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

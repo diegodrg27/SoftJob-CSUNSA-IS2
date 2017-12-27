@@ -5,83 +5,83 @@ package softjob.softjob;
  */
 
 class Empresa {
-    public String  Correo;
-    public String  Descripcion;
-    public String  Dirección;
-    public String  Nombre;
-    public String RUC;
-    public String  Telefono;
-    public String   WebSite;
-    public Empresa()
-    {
+    public String  correo;
 
+    public Empresa(String correo, String descripcion, String dirección, String nombre, String ruc, String telefono, String webSite) {
+        this.correo = correo;
+        this.descripcion = descripcion;
+        this.dirección = dirección;
+        this.nombre = nombre;
+        this.ruc = ruc;
+        this.telefono = telefono;
+        this.webSite = webSite;
     }
-    public Empresa(String correo, String descripcion, String dirección, String nombre, String RUC, String telefono, String webSite) {
-        Correo = correo;
-        Descripcion = descripcion;
-        Dirección = dirección;
-        Nombre = nombre;
-        this.RUC = RUC;
-        Telefono = telefono;
-        WebSite = webSite;
-    }
-
-
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
     public void setCorreo(String correo) {
-        Correo = correo;
+        this.correo = correo;
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
-        Descripcion = descripcion;
+        this.descripcion = descripcion;
     }
 
     public String getDirección() {
-        return Dirección;
+        return dirección;
     }
 
     public void setDirección(String dirección) {
-        Dirección = dirección;
+        this.dirección = dirección;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
-    public String getRUC() {
-        return RUC;
+    public String getRuc() {
+        return ruc;
     }
 
-    public void setRUC(String RUC) {
-        this.RUC = RUC;
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     public void setTelefono(String telefono) {
-        Telefono = telefono;
+        this.telefono = telefono;
     }
 
     public String getWebSite() {
-        return WebSite;
+        return webSite;
     }
 
     public void setWebSite(String webSite) {
-        WebSite = webSite;
+        this.webSite = webSite;
+    }
+
+    public String  descripcion;
+    public String  dirección;
+    public String  nombre;
+    public String  ruc;
+    public String  telefono;
+    public String   webSite;
+    public Empresa()
+    {
+
     }
 
 

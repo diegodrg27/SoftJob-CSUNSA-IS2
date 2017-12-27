@@ -23,7 +23,7 @@
         <item
             android:id="@+id/nav_empresa"
             android:icon="@drawable/ic_menu_share"
-            android:title="Empresa" />
+            android:title="Empresas" />
     </group>
 
     <!--item android:title="">
