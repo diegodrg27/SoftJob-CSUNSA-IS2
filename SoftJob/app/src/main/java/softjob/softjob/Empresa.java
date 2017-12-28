@@ -7,7 +7,7 @@ package softjob.softjob;
 class Empresa {
     public String  correo;
 
-    public Empresa(String correo, String descripcion, String dirección, String nombre, String ruc, String telefono, String webSite) {
+    public Empresa(String iduser,String correo, String descripcion, String dirección, String nombre, String ruc, String telefono, String webSite) {
         this.correo = correo;
         this.descripcion = descripcion;
         this.dirección = dirección;
@@ -15,6 +15,15 @@ class Empresa {
         this.ruc = ruc;
         this.telefono = telefono;
         this.webSite = webSite;
+        this.iduser = iduser;
+    }
+
+    public String getIduser() {
+        return correo;
+    }
+
+    public void setIduser(String correo) {
+        this.correo = correo;
     }
 
     public String getCorreo() {
@@ -78,7 +87,8 @@ class Empresa {
     public String  nombre;
     public String  ruc;
     public String  telefono;
-    public String   webSite;
+    public String  webSite;
+    public String iduser;
     public Empresa()
     {
 

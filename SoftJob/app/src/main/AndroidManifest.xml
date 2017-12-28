@@ -40,6 +40,7 @@
             android:name=".MostrarEmpresaActivity"
             android:label="@string/title_activity_mostrar_empresa"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

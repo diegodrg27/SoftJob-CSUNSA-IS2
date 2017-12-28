@@ -1,6 +1,8 @@
 package softjob.softjob;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -23,6 +25,7 @@ public class RegistrarEmpresa extends AppCompatActivity {
     EditText et_Website;
     Button btcancelar;
     Button btenviar;
+    String IdUsuario;
 
     DatabaseReference databaseEmpresas;
 
@@ -33,11 +36,15 @@ public class RegistrarEmpresa extends AppCompatActivity {
 
         databaseEmpresas = FirebaseDatabase.getInstance().getReference("empresas");
 
+        SharedPreferences prefs =
+                getSharedPreferences("InfoUsuario", Context.MODE_PRIVATE);
+        IdUsuario = prefs.getString("ID", "");
+
         et_Nombre = (EditText)findViewById(R.id.et_Nombre);
         et_RUC = (EditText)findViewById(R.id.et_RUC);
         et_Direccion = (EditText)findViewById(R.id.et_Direccion);
         et_Telefono = (EditText)findViewById(R.id.et_Telefono);
-        et_Categoria = (EditText)findViewById(R.id.et_Categoria);
+        //et_Categoria = (EditText)findViewById(R.id.et_Categoria);
         et_Descripcion = (EditText) findViewById(R.id.et_Descripcion);
         et_Correo = (EditText) findViewById(R.id.et_Correo);
         et_Website = (EditText) findViewById(R.id.et_Website);
@@ -64,7 +71,7 @@ public class RegistrarEmpresa extends AppCompatActivity {
         String ruc = et_RUC.getText().toString().trim();
         String direccion = et_Direccion.getText().toString().trim();
         String telefono = et_Telefono.getText().toString().trim();
-        String categoria = et_Categoria.getText().toString().trim();
+        //String categoria = et_Categoria.getText().toString().trim();
         String descripcion = et_Descripcion.getText().toString().trim();
         String correo = et_Correo.getText().toString().trim();
         String website = et_Website.getText().toString().trim();
@@ -73,7 +80,7 @@ public class RegistrarEmpresa extends AppCompatActivity {
         if (!TextUtils.isEmpty(nombre)){
             String id = databaseEmpresas.push().getKey();
 
-            Empresa empresa = new Empresa(correo, descripcion, direccion, nombre, ruc, telefono, website);
+            Empresa empresa = new Empresa(IdUsuario,correo, descripcion, direccion, nombre, ruc, telefono, website);
             databaseEmpresas.child(id).setValue(empresa);
             Toast.makeText(this, "Empresa agregada!", Toast.LENGTH_SHORT).show();
 

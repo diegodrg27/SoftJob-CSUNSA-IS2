@@ -32,14 +32,13 @@ public class HomeFragment extends Fragment {
     String cont_desastre;//recibes lo que eliges en el spinner
     GridView gridView;
     ArrayList<String> resultados=new ArrayList<>();
-    String []values= {"Ankit","Bohra","Xyz"};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_home, container, false);
         gridView=(GridView)v.findViewById(R.id.gvHome);
-        final ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,resultados);
+        //final ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,resultados);
 
 
         spDesastre=(Spinner)v.findViewById(R.id.spDesastre);
@@ -85,7 +84,7 @@ public class HomeFragment extends Fragment {
                 return view;//retornamos el view
             }
         };
-
+        resultados.clear();
         adapterDesastre.setDropDownViewResource(R.layout.spinner_item);//recibe la configuracion del spinneritem.xml
         spDesastre.setAdapter(adapterDesastre);//Ingresamos el Array adapter en el spinner
 
@@ -97,10 +96,9 @@ public class HomeFragment extends Fragment {
                 if(position > 0){
                     cont_desastre = spDesastre.getSelectedItem().toString();//obtiene el item en string
                     findEmpleo(cont_desastre);
-                    gridView.setAdapter(arrayAdapter);
                     GridAdapter gridAdapter=new GridAdapter(getContext(),resultados);
                     gridView.setAdapter(gridAdapter);
-                    //resultados.clear();
+                    gridAdapter.notifyDataSetChanged();
                 }
 
             }
@@ -114,19 +112,23 @@ public class HomeFragment extends Fragment {
     }
     void findEmpleo(String keyCategoria)
     {
+        //gridView.setAdapter(null);
+
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference databaseReference=database.getReference().child("empleos");
         Query consulta=databaseReference.orderByChild("id_categoria").equalTo(keyCategoria);
         consulta.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                resultados.clear();
                 //String cosa=dataSnapshot.getValue().toString();
                 String cosa=dataSnapshot.getKey();
-                resultados.add(cosa);
+                String Nombre=dataSnapshot.child("titulo").getValue().toString();
+                String fecha_limite=dataSnapshot.child("fecha_limite").getValue().toString();
+                String Final=Nombre+"\n"+fecha_limite;
+                resultados.add(Final);
                 //Log.d("DatosEmpresa",dataSnapshot.toString());
-                Toast toas = Toast.makeText(getApplicationContext(), dataSnapshot.getKey(), Toast.LENGTH_SHORT);
-                toas.show();
+                //Toast toas = Toast.makeText(getApplicationContext(), dataSnapshot.getKey(), Toast.LENGTH_SHORT);
+                //toas.show();
             }
 
             @Override
@@ -146,6 +148,8 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Toast toas = Toast.makeText(getApplicationContext(), "No hay ni mierda", Toast.LENGTH_SHORT);
+                toas.show();
 
             }
         });
