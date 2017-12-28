@@ -27,10 +27,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".EmpleosActivity" />
-        <activity android:name=".DatosPersonales" />
-        <activity android:name=".editarInformacionProfesional" />
-        <activity android:name=".RegistrarEmpresa" />
+        <activity android:name=".EmpleosActivity"
+            android:label="Empleos"/>
+        <activity android:name=".DatosPersonales"
+            android:label="Datos Personales"/>
+        <activity android:name=".editarInformacionProfesional"
+            android:label="Datos Personales"/>
+        <activity android:name=".RegistrarEmpresa"
+            android:label="Registrar Empresa"/>
         <activity android:name=".EmpleosListActivity" />
         <activity
             android:name=".MostrarEmpresaActivity"
